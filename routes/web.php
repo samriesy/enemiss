@@ -36,6 +36,9 @@ Route::get('/', function () {
     // or
     // $users = DB::table('users')->get();
     
+    // or
+    // $user = User::all();
+    
     // Log::info($all_users);
 
 
@@ -66,6 +69,13 @@ Route::get('/', function () {
     //     'password' => 'password',
     // ]);
 
+    // or
+    // $user = User::create([
+    //     'name'  => 'Samuel',
+    //     'email' => 'samuel-iesterer@outlook.de',
+    //     'password'  => 'password',
+    // ]);
+
 
     // update user ---------------------------------------------------
     // $update_user = DB::update('update users set name=? where name=?', [
@@ -76,6 +86,11 @@ Route::get('/', function () {
     // or
     // $user = DB::table('users')->where('id', 1)->update(['email' => 'samuel-riesterer@outlook.de']);
     
+    // or>
+    // $user = User::where('id', 2)->get();    // or = User::find(6);
+    // $user->update([
+    //     'email' => 'samuel-riesterer@outlook.de',
+    // ]);
     
     // delete user ---------------------------------------------------
     // $delete_user = DB::delete('delete from users where name=?', [
@@ -84,6 +99,10 @@ Route::get('/', function () {
 
     // or
     // $user = DB::table('users')->where('id', 1)->delete();
+
+    // or
+    // $user = User::find(2);
+    // $user->delete();
 
 
 
@@ -123,7 +142,56 @@ Route::get('/', function () {
     // Dump and die ---------------------------------------------------
     // dd($all_users);
 
+
+
+
+
+
+
+    /* Console Commands/Prompts
+
+    # php artisan make:migration update_users_table_added_avatar_field --table=users
+    
+
+    # php artisan model:show user       Shows all related fields to the user eloquent model
+    
+    # php artisan config:cache          Creates a config.php file in /bootstrap/cache/ so all config settings can be cached instead of beeing loaded all the time.
+    # php artisan config:clear          Has to be called everytime the .env file is updated.
+
+
+
+
+    */
+
     return view('welcome');
+});
+
+
+Route::get('/tests', function() {
+
+    // $user1 = DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
+    //     'User1', 
+    //     'user1@web.de',
+    //     'password1',
+    // ]);
+
+    // $user2 = DB::table('users')->insert([
+    //     'name'  => 'User2',
+    //     'email' => 'user2@web.de',
+    //     'password'  => 'password2',
+    // ]);
+
+    // $user3 = User::create([
+    //     'name'  => 'User3',
+    //     'email' => 'user3@web.de',
+    //     'password'  => 'password3',
+    // ]);
+
+    // User::__set('primaryKey', 'name'); 
+
+    $users = User::all();
+
+    dd($users);
 });
 
 Route::get('/dashboard', function () {
